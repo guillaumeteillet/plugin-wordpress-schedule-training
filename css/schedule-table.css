@@ -1,0 +1,226 @@
+.ST_table_design {
+  width: 958px;
+	border: solid 1px #C5C5C5;
+  margin: auto;
+}
+
+.ST_table_title {
+  font-family: 'Roboto';
+	font-size: 22px;
+	font-weight: 500;
+	letter-spacing: 0.4px;
+	color: #404040;
+  background: #f2f2f2;
+  height: 61px;
+  border-bottom: none 0px;
+}
+
+.ST_table_title_center {
+  vertical-align: middle;
+  font-weight: bold;
+  border-right: none;
+  border-bottom: none;
+}
+
+.ST_table_row_0 {
+  background-color: #ffffff;
+  font-family: 'Roboto';
+	font-size: 18px;
+	letter-spacing: -0.1px;
+	color: #55565a;
+  border-right: none;
+  border-bottom: none;
+  height: 50px;
+}
+
+.ST_table_row_1 {
+  background-color: #f2f2f2;
+  font-family: 'Roboto';
+	font-size: 18px;
+	letter-spacing: -0.1px;
+	color: #55565a;
+  border-right: none;
+  border-bottom: none;
+  height: 50px;
+}
+
+.ST_table_cell {
+  border-right: none;
+  border-bottom: none;
+  font-family: 'Roboto';
+	font-size: 18px;
+	letter-spacing: -0.1px;
+	color: #55565a;
+  height: 50px;
+  vertical-align: middle;
+}
+
+.details_grey_box {
+  background-color: #f2f2f2;
+}
+
+.details_white_box {
+  background-color: #ffffff;
+}
+
+.details_big_box {
+  width: 100%;
+}
+
+.title1 {
+  width:40%;
+}
+.title2 {
+  width:20%;
+}
+.title3 {
+  width:10%;
+}
+.title4 {
+  width:30%;
+}
+
+.details_content_box {
+  width: 958px;
+  margin: auto;
+}
+
+.details_content_box_header {
+  display: flex;
+  margin-bottom: 30px;
+  padding-top: 20px;
+}
+
+.details_content_box_date {
+  font-family: 'Roboto';
+	font-size: 22px;
+	font-weight: 500;
+	letter-spacing: 0.4px;
+	color: #404040;
+  width: 25%;
+  text-align: center;
+}
+
+.details_content_box_title {
+  font-family: 'Roboto';
+	font-size: 30px;
+	font-weight: 500;
+	letter-spacing: -0.9px;
+	color: #a0d920;
+  width: 50%;
+  text-align: center;
+  text-decoration: underline;
+}
+
+.details_content_box_register {
+  font-family: 'Roboto';
+	font-size: 22px;
+	font-weight: 500;
+	letter-spacing: 0.3px;
+	text-align: right;
+	color: #404040;
+  width: 25%;
+  text-align: center;
+}
+
+.details_content_box_content {
+  font-family: 'Roboto';
+	font-size: 22px;
+	font-weight: 500;
+	letter-spacing: 0.3px;
+	text-align: justify;
+	color: #959da2;
+}
+
+.details_content_box_readmore {
+  font-family: 'Roboto';
+	font-size: 22px;
+	font-weight: 500;
+	letter-spacing: 0.3px;
+	color: #404040;
+  margin-bottom: 10px;
+}
+
+.details_content_box_footer {
+  display: flex;
+  padding-bottom: 30px;
+}
+
+.details_content_box_certif {
+  margin-right: 35px;
+}
+
+.details_content_box_teacher_pic img {
+  margin-right: 5px;
+}
+
+.details_content_box_instructor {
+  text-align: center;
+  font-family: 'Roboto';
+	font-size: 18px;
+	letter-spacing: -0.1px;
+	text-align: center;
+	color: #55565a;
+}
+
+.ST_title_admin {
+  font-size:24px;
+}
+
+.ST_table_admin_title {
+  text-align:center;
+  font-weight:bold;
+}
+
+.ST_details_widget_link {
+  color: #404040 !important;
+  text-decoration: underline !important;
+}
+
+.ST_register_widget_title {
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  width: 75%;
+  font-size:30px;
+  color: #ff831d;
+}
+
+.ST_register_widget_date {
+  position: relative;
+  top: -80px;
+  left: 400px;
+  text-align:center;
+  font-family: Roboto;
+  font-size: 22px;
+  font-weight: 500;
+  letter-spacing: 0.4px;
+  color: #404040;
+}
+
+.ST_register_widget_date_center {
+  text-align:center;
+  font-family: Roboto;
+  font-size: 22px;
+  font-weight: 500;
+  letter-spacing: 0.4px;
+  color: #404040;
+}
+
+.ST_register_widget_button {
+  width: 253px;
+  height: 65px;
+  border-radius: 4px;
+  background-color: #ff831d;
+  margin:auto;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.ST_table_widget_link {
+  color: #55565a !important;
+  text-decoration: underline !important;
+}

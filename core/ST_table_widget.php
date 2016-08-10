@@ -1,0 +1,68 @@
+<?php
+
+class scheduletraining_widget_paloit extends WP_Widget {
+
+    function __construct()
+    {
+        parent::__construct('scheduletraining_widget_paloit', __('Schedule Table for Training Palo-IT', 'scheduletraining_widget_paloit_domain'), array( 'description' => __( 'Schedule Widget for Palo-IT', 'scheduletraining_widget_paloit_domain' ), ));
+    }
+
+    public function widget( $args, $instance ) {
+      ?>
+        <table class="ST_table_design">
+          <tbody>
+            <tr class="ST_table_title">
+              <td class="ST_table_title_center title1">TRAINING NAME</td>
+              <td class="ST_table_title_center title2">DATES</td>
+              <td class="ST_table_title_center title3"></td>
+              <td class="ST_table_title_center title4">INSTRUCTOR(S)</td>
+            </tr>
+            <?php
+            global $wpdb;
+
+            $colorTable = 0;
+
+            $list_training = $wpdb->get_results("SELECT * FROM schedule_training ORDER BY timestamp_event_start");
+            foreach ( $list_training as $training )
+            {
+              if ($colorTable == 0) {
+                  $colorTable = 1;
+                  ?><tr class="ST_table_row_0"><?php
+                }
+              else {
+                $colorTable = 0;
+                ?><tr class="ST_table_row_1"><?php
+              }
+             ?>
+                <td class="ST_table_cell"><a class="ST_table_widget_link" href="/training-register/?id=<?php echo stripslashes($training->id); ?>"><?php echo stripslashes($training->name); ?></a></td>
+                <td class="ST_table_cell">
+                  <?php
+
+                  $start = stripslashes($training->timestamp_event_start);
+                  $end = stripslashes($training->timestamp_event_end);
+
+                  if ($start == $end)
+                    echo date('F', $start)." ".date('d', $start).date('S', $start)." ".date('Y', $start);
+                  else
+                  {
+                    echo date('F', $start)." ".date('d', $start).date('S', $start);
+                    if (date('Y', $start) != date('Y', $end))
+                      " ".date('Y', $start);
+                    echo " - ";
+                    if(date('F', $end) != date('F', $start))
+                      echo date('F', $end)." ";
+                    echo date('d', $end).date('S', $end)." ".date('Y', $end);
+                  }?>
+                </td>
+                <td class="ST_table_cell"><a class="ST_table_widget_link" href="/training-register/?id=<?php echo stripslashes($training->id); ?>">Register</a></td>
+                <td class="ST_table_cell"><?php echo nl2br(stripslashes($training->instructors)); ?></td>
+              </tr>
+          <?php
+            }
+            ?>
+          </tbody>
+        </table>
+      <?php
+    }
+}
+?>
