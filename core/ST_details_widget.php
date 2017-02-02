@@ -15,7 +15,7 @@ class scheduletraining_details_widget_paloit extends WP_Widget {
 
         $colorTable = 0;
 
-        $list_training = $wpdb->get_results("SELECT * FROM schedule_training ORDER BY timestamp_event_start");
+        $list_training = $wpdb->get_results("SELECT * FROM new2015_schedule_training ORDER BY timestamp_event_start");
         foreach ($list_training as $training)
         {
           if ($colorTable == 0) {
@@ -29,36 +29,54 @@ class scheduletraining_details_widget_paloit extends WP_Widget {
           ?>
             <div class="details_content_box">
               <div class="details_content_box_header">
-                <div class="details_content_box_date"><?php
+                <div class="details_content_box_date">
+
+                  <?php
 
                   $start = stripslashes($training->timestamp_event_start);
                   $end = stripslashes($training->timestamp_event_end);
 
-                  echo strtoupper(date('M', $start))." ".date('d', $start).date('S', $start);
-                  if (date('Y', $start) != date('Y', $end))
-                    echo " ".date('Y', $start);
-                  if (date('d', $start) != date('d', $end))
+
+
+                  if (date('n', $start) == 7)
+                    echo "June";
+                  elseif (date('n', $start) == 8)
+                    echo "July";
+                  elseif (date('n', $start) == 9)
+                    echo "Sept";
+                  else
+                    echo date('M', $start);
+                  echo " ".date('j', $start).date('S', $start);
+                  if (date('j', $start) != date('j', $end))
                     echo " - ";
                   if(date('M', $end) != date('M', $start))
-                    echo strtoupper(date('M', $end))." ";
-                  if (date('d', $start) != date('d', $end))
-                    echo date('d', $end).date('S', $end);
-                  echo " ".date('Y', $end); ?>
-                  
+                  {
+                    if (date('n', $end) == 7)
+                      echo "June";
+                    elseif (date('n', $end) == 8)
+                      echo "July";
+                    elseif (date('n', $end) == 9)
+                      echo "Sept";
+                    else
+                      echo date('M', $end);
+                  }
+                  if (date('j', $start) != date('j', $end))
+                    echo date('j', $end).date('S', $end); ?>
+
                 </div>
                 <div class="details_content_box_title"><a href="/training-register/?id=<?php echo stripslashes($training->id); ?>"><?php echo stripslashes($training->name); ?></a></div>
-                <div class="details_content_box_register"><a class="ST_details_widget_link" href="/training-register/?id=<?php echo stripslashes($training->id); ?>">REGISTER</a></div>
+                <div class="details_content_box_register"><a class="ST_details_widget_link" href="/training-register/?id=<?php echo stripslashes($training->id); ?>"><div class="ST_register_widget_button2">REGISTER</div></a></div>
               </div>
               <div class="details_content_box_content">
                 <?php echo nl2br(stripslashes($training->description)); ?>
               </div>
               <div class="details_content_box_readmore">
-                <a class="ST_details_widget_link" href="/training-register/?id=<?php echo stripslashes($training->id); ?>">Read more</a>
+                <a class="ST_details_widget_link" href="/training-register/?id=<?php echo stripslashes($training->id); ?>" style="font-size: 15px;">Read more >></a>
               </div>
               <div class="details_content_box_footer">
                 <div class="details_content_box_certif"><?php echo stripslashes($training->img_certif); ?></div>
                 <div class="details_content_box_teacher_pic"><?php echo stripslashes($training->img_instructor); ?></div>
-                <div class="details_content_box_teacher_name"><span class="details_content_box_instructor">INSTRUCTOR(S)</span><br/><br/><?php echo nl2br(stripslashes($training->instructors)); ?></div>
+                <div class="details_content_box_teacher_name"><span class="details_content_box_instructor">INSTRUCTORS</span><br/><br/><?php echo nl2br(stripslashes($training->instructors)); ?></div>
               </div>
             </div>
       <?php

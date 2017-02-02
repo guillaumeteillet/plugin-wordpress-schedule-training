@@ -25,11 +25,15 @@ function sheduletraining_create_db() {
   global $wpdb;
   $version = get_option( 'schedule_training_version', '1.0' );
 	$charset_collate = $wpdb->get_charset_collate();
-	$table_name = 'schedule_training';
+	$table_name = $wpdb->prefix . 'schedule_training';
 
 	$sql = "CREATE TABLE $table_name (
 		id mediumint(9) NOT NULL AUTO_INCREMENT,
     name text,
+    category text,
+    pricing text,
+    time_event text,
+    lunch text,
 		date_event_start text,
 		date_event_end text,
 		timestamp_event_start text,
@@ -40,6 +44,8 @@ function sheduletraining_create_db() {
 		img_certif text,
 		img_instructor text,
 		link_register text,
+		trainersprofile text,
+		icon_area text,
 		UNIQUE KEY id (id)
 	) $charset_collate;";
 

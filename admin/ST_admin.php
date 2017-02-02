@@ -11,9 +11,13 @@ function admin_training_list() {
   if (isset($_POST) && $_GET['action'] == 'add')
   {
     $wpdb->insert(
-    'schedule_training',
+    'new2015_schedule_training',
     array(
       'name' => $_POST['name_training'],
+      'category' => $_POST['category'],
+      'pricing' => $_POST['pricing'],
+      'time_event' => $_POST['time'],
+      'lunch' => $_POST['lunch'],
       'date_event_start' => $_POST['date_training_start'],
       'date_event_end' => $_POST['date_training_end'],
       'timestamp_event_end' => strtotime($_POST['date_training_end']),
@@ -23,15 +27,21 @@ function admin_training_list() {
       'readmore' => $_POST['schedule_training_desc_hard'],
       'img_certif' => $_POST['schedule_training_image'],
       'img_instructor' => $_POST['schedule_training_image_instructor'],
-      'link_register' => $_POST['link_register']
+      'link_register' => $_POST['link_register'],
+      'trainersprofile' => $_POST['schedule_training_trainersprofile'],
+      'icon_area' => $_POST['schedule_training_icon_area']
     ));
   }
-  elseif (isset($_POST) && $_GET['action'] == 'edit' && isset($_GET['id']))
+  elseif (isset($_POST) && $_POST['name_training'] != "" && $_GET['action'] == 'edit' && isset($_GET['id']))
   {
     $wpdb->update(
-    'schedule_training',
+    'new2015_schedule_training',
     array(
       'name' => $_POST['name_training'],
+      'category' => $_POST['category'],
+      'pricing' => $_POST['pricing'],
+      'time_event' => $_POST['time'],
+      'lunch' => $_POST['lunch'],
       'date_event_start' => $_POST['date_training_start'],
       'date_event_end' => $_POST['date_training_end'],
       'timestamp_event_end' => strtotime($_POST['date_training_end']),
@@ -41,13 +51,15 @@ function admin_training_list() {
       'readmore' => $_POST['schedule_training_desc_hard'],
       'img_certif' => $_POST['schedule_training_image'],
       'img_instructor' => $_POST['schedule_training_image_instructor'],
-      'link_register' => $_POST['link_register']
+      'link_register' => $_POST['link_register'],
+      'trainersprofile' => $_POST['schedule_training_trainersprofile'],
+      'icon_area' => $_POST['schedule_training_icon_area']
     ),
     array( 'id' => $_GET['id'] ));
   }
   if (isset($_GET['del']))
   {
-    $wpdb->delete( 'schedule_training', array('id' => $_GET['del']));
+    $wpdb->delete( 'new2015_schedule_training', array('id' => $_GET['del']));
   }
   ?>
     <div class="wrap">
@@ -64,7 +76,7 @@ function admin_training_list() {
         </thead>
         <tbody>
           <?php
-          $list_training = $wpdb->get_results("SELECT * FROM schedule_training ORDER BY timestamp_event_start");
+          $list_training = $wpdb->get_results("SELECT * FROM new2015_schedule_training ORDER BY timestamp_event_start");
           foreach ( $list_training as $training )
           {
             ?>
@@ -74,7 +86,7 @@ function admin_training_list() {
                 <td class="column-columnname">
                   <div style="text-align:center;">
                       <span><a href="admin.php?page=admin_training_new&edit=<?php echo $training->id; ?>">Edit</a> |</span>
-                      <span><a href="admin.php?page=admin_training_toppage&del=<?php echo $training->id; ?>" onclick="return(confirm('Are you sure to delete this event ?'));">Delete</a></span>
+                      <span><a href="admin.php?page=admin_training_list&del=<?php echo $training->id; ?>" onclick="return(confirm('Are you sure to delete this event ?'));">Delete</a></span>
                   </div>
                 </td>
             </tr>
@@ -92,8 +104,12 @@ function admin_training_new() {
   global $wpdb;
   if (isset($_GET['edit']))
   {
-    $training = $wpdb->get_results("SELECT * FROM schedule_training WHERE id=".$_GET['edit']);
+    $training = $wpdb->get_results("SELECT * FROM new2015_schedule_training WHERE id=".$_GET['edit']);
     $name = stripslashes($training[0]->name);
+    $category = stripslashes($training[0]->category);
+    $pricing = stripslashes($training[0]->pricing);
+    $time = stripslashes($training[0]->time_event);
+    $lunch = stripslashes($training[0]->lunch);
     $date_event_start= stripslashes($training[0]->date_event_start);
     $date_event_end= stripslashes($training[0]->date_event_end);
     $link_register = stripslashes($training[0]->link_register);
@@ -118,6 +134,30 @@ function admin_training_new() {
         <div id="titlediv">
           <div id="titlewrap">
   		        <input type="text" name="name_training" value="<?php echo $name; ?>" size="30" placeholder="Name of the training" id="title" spellcheck="true" autocomplete="off">
+          </div>
+        </div><br/>
+
+        <div id="titlediv">
+          <div id="titlewrap">
+  		        <input type="text" name="category" value="<?php echo $category; ?>" size="30" placeholder="Category" id="title" spellcheck="true" autocomplete="off">
+          </div>
+        </div><br/>
+
+        <div id="titlediv">
+          <div id="titlewrap">
+  		        <input type="text" name="pricing" value="<?php echo $pricing; ?>" size="30" placeholder="Pricing" id="title" spellcheck="true" autocomplete="off">
+          </div>
+        </div><br/>
+
+        <div id="titlediv">
+          <div id="titlewrap">
+  		        <input type="text" name="time" value="<?php echo $time; ?>" size="30" placeholder="Time" id="title" spellcheck="true" autocomplete="off">
+          </div>
+        </div><br/>
+
+        <div id="titlediv">
+          <div id="titlewrap">
+  		        <input type="text" name="lunch" value="<?php echo $lunch; ?>" size="30" placeholder="Lunch" id="title" spellcheck="true" autocomplete="off">
           </div>
         </div><br/>
 
@@ -153,6 +193,14 @@ function admin_training_new() {
 
         <h3>Instructors :</h3>
         <?php wp_editor(stripslashes($training[0]->instructors), "schedule_training_instructors"); ?><br/><br/>
+        <br />
+
+        <h3>Trainer's profile :</h3>
+        <?php wp_editor(stripslashes($training[0]->trainersprofile), "schedule_training_trainersprofile"); ?><br/><br/>
+        <br />
+
+        <h3>Icon Area Register Page :</h3>
+        <?php wp_editor(stripslashes($training[0]->icon_area), "schedule_training_icon_area"); ?><br/><br/>
         <br />
         <input type="submit" value="Save a new training event" class="button-primary"/>
       </form>
