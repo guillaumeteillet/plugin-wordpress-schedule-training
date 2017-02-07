@@ -37,8 +37,8 @@ class scheduletraining_widget_paloit extends WP_Widget {
                 <td class="ST_table_cell"><a class="ST_table_widget_link" href="/training-register/?id=<?php echo stripslashes($training->id); ?>"><?php echo stripslashes($training->name); ?></a></td>
                 <td class="ST_table_cell ST_display_mobile">
                   <?php
-
-                  $start = stripslashes($training->timestamp_event_start);
+                  echo $training->date_event_display;
+                /*  $start = stripslashes($training->timestamp_event_start);
                   $end = stripslashes($training->timestamp_event_end);
 
                   if ($start == $end)
@@ -50,7 +50,7 @@ class scheduletraining_widget_paloit extends WP_Widget {
                     if(date('F', $end) != date('F', $start))
                       echo date('F', $end)." ";
                     echo date('j', $end).date('S', $end);
-                  }?>
+                  } */?>
                 </td>
                 <td class="ST_table_cell"><a class="ST_table_widget_link" href="/training-register/?id=<?php echo stripslashes($training->id); ?>"><div class="ST_register_widget_button3">REGISTER</div></a></td>
                 <td class="ST_table_cell ST_display_mobile"><?php echo nl2br(stripslashes($training->instructors)); ?></td>

@@ -20,6 +20,7 @@ function admin_training_list() {
       'lunch' => $_POST['lunch'],
       'date_event_start' => $_POST['date_training_start'],
       'date_event_end' => $_POST['date_training_end'],
+      'date_event_display' => $_POST['date_training_display'],
       'timestamp_event_end' => strtotime($_POST['date_training_end']),
       'timestamp_event_start' => strtotime($_POST['date_training_start']),
       'instructors' => $_POST['schedule_training_instructors'],
@@ -44,6 +45,7 @@ function admin_training_list() {
       'lunch' => $_POST['lunch'],
       'date_event_start' => $_POST['date_training_start'],
       'date_event_end' => $_POST['date_training_end'],
+      'date_event_display' => $_POST['date_training_display'],
       'timestamp_event_end' => strtotime($_POST['date_training_end']),
       'timestamp_event_start' => strtotime($_POST['date_training_start']),
       'instructors' => $_POST['schedule_training_instructors'],
@@ -82,7 +84,7 @@ function admin_training_list() {
             ?>
             <tr class="alternate">
                 <td class="column-columnname" scope="row"><?php echo stripslashes($training->name); ?></td>
-                <td class="column-columnname"><?php echo stripslashes($training->date_event_start); ?> - <?php echo stripslashes($training->date_event_end); ?></td>
+                <td class="column-columnname"><?php echo stripslashes($training->date_event_display); ?></td>
                 <td class="column-columnname">
                   <div style="text-align:center;">
                       <span><a href="admin.php?page=admin_training_new&edit=<?php echo $training->id; ?>">Edit</a> |</span>
@@ -182,6 +184,12 @@ function admin_training_new() {
         <div id="titlediv">
           <div id="titlewrap">
             <input type="text"  name="date_training_end" value="<?php echo $date_event_end; ?>" size="30" placeholder="End Date for the event (eg. 23-04-2016)" id="title" spellcheck="true" class="custom_date" autocomplete="off">
+          </div>
+        </div><br/>
+
+        <div id="titlediv">
+          <div id="titlewrap">
+            <input type="text"  name="date_training_display" value="<?php echo stripslashes($training[0]->date_event_display); ?>" size="30" placeholder="Display date for the event" id="title" spellcheck="true" class="custom_date" autocomplete="off">
           </div>
         </div><br/>
 

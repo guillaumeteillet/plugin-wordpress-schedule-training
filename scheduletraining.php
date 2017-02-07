@@ -36,6 +36,7 @@ function sheduletraining_create_db() {
     lunch text,
 		date_event_start text,
 		date_event_end text,
+		date_event_display text,
 		timestamp_event_start text,
 		timestamp_event_end text,
 		instructors text,

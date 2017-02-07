@@ -33,7 +33,7 @@ class scheduletraining_details_widget_paloit extends WP_Widget {
 
                   <?php
 
-                  $start = stripslashes($training->timestamp_event_start);
+                /*  $start = stripslashes($training->timestamp_event_start);
                   $end = stripslashes($training->timestamp_event_end);
 
 
@@ -61,7 +61,11 @@ class scheduletraining_details_widget_paloit extends WP_Widget {
                       echo date('M', $end);
                   }
                   if (date('j', $start) != date('j', $end))
-                    echo date('j', $end).date('S', $end); ?>
+                    echo date('j', $end).date('S', $end); */
+
+                    echo $training->date_event_display;
+
+                    ?>
 
                 </div>
                 <div class="details_content_box_title"><a href="/training-register/?id=<?php echo stripslashes($training->id); ?>"><?php echo stripslashes($training->name); ?></a></div>

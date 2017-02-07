@@ -48,13 +48,14 @@ class scheduletraining_register_widget_paloit extends WP_Widget {
                       <tr>
                         <td style="width:140px; border:0px;"><span style="font-weight:bold;">Date :</span></td>
                         <td style="border:0px;"><?php
-                              echo date('F', $start)." ".date('j', $start).date('S', $start);
+                        echo $training[0]->date_event_display;
+                              /*echo date('F', $start)." ".date('j', $start).date('S', $start);
                               if (date('j', $start) != date('j', $end))
                                 echo " - ";
                               if(date('F', $end) != date('F', $start))
                                 echo date('F', $end)." ";
                               if (date('j', $start) != date('j', $end))
-                                echo date('j', $end).date('S', $end); ?></td>
+                                echo date('j', $end).date('S', $end); */ ?></td>
                       </tr>
                     </tbody>
                   </table>
@@ -101,13 +102,14 @@ class scheduletraining_register_widget_paloit extends WP_Widget {
         </div>
           <div class="ST_register_widget_date_center">
             <?php
-            echo date('F', $start)." ".date('j', $start).date('S', $start);
+            echo $training[0]->date_event_display;
+            /* echo date('F', $start)." ".date('j', $start).date('S', $start);
             if (date('j', $start) != date('j', $end))
               echo " - ";
             if(date('F', $end) != date('F', $start))
               echo date('F', $end)." ";
             if (date('j', $start) != date('j', $end))
-              echo date('j', $end).date('S', $end); ?>
+              echo date('j', $end).date('S', $end); */?>
             <a href="<?php echo $training[0]->link_register; ?>"><br><br><div class="ST_register_widget_button">REGISTER</div></a>
             <br/>
             <p style="font-size:15px;">Need more information? Email us at eventsg@palo-it.com</p>
